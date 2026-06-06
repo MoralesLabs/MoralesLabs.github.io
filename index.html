@@ -3,51 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mlabs Developer Hub</title>
+    <title>Morales Labs</title>
     <style>
+        :root {
+            --ink: #1a1f2b;
+            --muted: #5b6472;
+            --line: #e6e8ec;
+            --bg: #ffffff;
+            --soft: #f7f8fa;
+            --accent: #2f6f6a;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-            color: #333;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            margin: 0;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
         }
-        h1 { color: #111; border-bottom: 2px solid #eaeaea; padding-bottom: 10px; }
-        .btn {
-            display: inline-block;
-            background: #24292e;
-            color: white;
-            padding: 10px 20px;
+        .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(8px);
+            z-index: 10;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 28px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand img { height: 30px; width: auto; display: block; }
+        .brand span { font-weight: 600; letter-spacing: .02em; font-size: 1.05rem; }
+        .nav a.link {
+            color: var(--muted);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 10px;
+            font-size: .92rem;
+            font-weight: 500;
         }
-        .btn:hover { background: #555; }
-        .dataset-box {
-            background: #f6f8fa;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            padding: 15px;
-            margin-top: 20px;
+        .nav a.link:hover { color: var(--ink); }
+
+        /* Hero */
+        .hero { padding: 96px 0 72px; }
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            font-size: .74rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 18px;
+        }
+        .hero h1 {
+            font-size: clamp(2.1rem, 5vw, 3.2rem);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            margin: 0 0 22px;
+            font-weight: 700;
+        }
+        .hero p.lead {
+            font-size: 1.18rem;
+            color: var(--muted);
+            max-width: 640px;
+            margin: 0 0 32px;
+        }
+        .cta {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            text-decoration: none;
+            padding: 13px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .95rem;
+            transition: background .2s ease;
+        }
+        .cta:hover { background: var(--accent); }
+        .cta.ghost {
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            margin-left: 10px;
+        }
+        .cta.ghost:hover { border-color: var(--ink); background: var(--soft); }
+
+        /* Sections */
+        section { padding: 56px 0; border-top: 1px solid var(--line); }
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            font-size: .72rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 14px;
+        }
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            letter-spacing: -0.01em;
+            margin: 0 0 18px;
+            font-weight: 700;
+        }
+        p { color: #39414f; margin: 0 0 18px; }
+
+        /* Capability grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            margin-top: 28px;
+        }
+        .card {
+            background: var(--soft);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+        .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+        .tag {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: #eef0f3;
+            border-radius: 999px;
+            padding: 4px 10px;
+            margin-bottom: 12px;
+        }
+        .tag-live { color: #1f5f4f; background: #e3f3ec; }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+        .card-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(26,31,43,0.06);
+        }
+        .card-cta {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: .9rem;
+        }
+        .grid-note {
+            margin-top: 24px;
+            font-size: .92rem;
+            color: var(--muted);
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+        .avatar {
+            width: 120px; height: 120px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #2f6f6a 0%, #1a1f2b 100%);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.6rem; font-weight: 700; letter-spacing: .02em;
+        }
+        .about-grid p:last-child { margin-bottom: 0; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 36px 0 48px;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+        footer a { color: var(--ink); text-decoration: none; font-weight: 500; }
+        footer a:hover { color: var(--accent); }
+        .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+        @media (max-width: 560px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .avatar { width: 84px; height: 84px; font-size: 2rem; }
+            .nav a.link { display: none; }
+            .cta.ghost { margin-left: 0; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
 
-    <h1>Mlabs</h1>
-    <p>Welcome to the official developer hub for Mlabs. We build lightweight, efficient applications for language learning.</p>
+    <header>
+        <div class="nav">
+            <div class="brand">
+                <img src="LOGO.svg" alt="Morales Labs logo">
+                <span>Morales&nbsp;Labs</span>
+            </div>
+            <a class="link" href="#about">About</a>
+        </div>
+    </header>
 
-    <h2>Vietnamese App Datasets</h2>
-    <p>Below you can download the official, open-source datasets utilized in our Vietnamese learning application.</p>
+    <main class="wrap">
 
-    <div class="dataset-box">
-        <h3>Core Vocabulary Dataset (JSON)</h3>
-        <p>Contains over 1,000 essential Vietnamese words, audio hooks, and English translations mappings.</p>
-        <!-- Change 'vietnamese_vocab.json' to your exact filename -->
-        <a href="vietnamese_vocab.json" download class="btn">Download Dataset</a>
-    </div>
+        <section class="hero" style="border-top:none;">
+            <p class="eyebrow">Morales Labs</p>
+            <h1>Software for real-world problems.</h1>
+            <p class="lead">
+                Morales Labs is an initiative to design and deliver practical IT solutions —
+                from polished Android apps to complex data analysis and mathematical
+                optimization. The goal is simple: turn real problems into clear, reliable software.
+            </p>
+            <a class="cta" href="#about">Meet the maker</a>
+            <a class="cta ghost" href="#work">What I build</a>
+        </section>
+
+        <section id="work">
+            <p class="section-label">What I do</p>
+            <div class="grid">
+                <a class="card card-link" href="apps.html">
+                    <span class="tag tag-live">1 app · live</span>
+                    <h3>Android Apps</h3>
+                    <p>Clean, lightweight mobile applications designed to be fast, intuitive, and genuinely useful.</p>
+                    <span class="card-cta">View apps &rarr;</span>
+                </a>
+                <div class="card">
+                    <span class="tag">Private work</span>
+                    <h3>Data Analysis</h3>
+                    <p>Turning messy, real-world data into clear insight that supports better decisions.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Private work</span>
+                    <h3>Machine Learning &amp; Optimization</h3>
+                    <p>Modeling complex problems and finding the most efficient solution — not just a working one.</p>
+                </div>
+                <div class="card">
+                    <span class="tag">Private work</span>
+                    <h3>Digitalization</h3>
+                    <p>Streamlining manual processes into reliable digital workflows that save time and reduce error.</p>
+                </div>
+            </div>
+            </p>
+        </section>
+
+        <section id="about">
+            <p class="section-label">About</p>
+            <h2>Hi, I'm Sebastian.</h2>
+            <div class="about-grid">
+                <div class="avatar">SM</div>
+                <div>
+                    <p>
+                        I'm a mechanical engineer with a background in the automotive manufacturing
+                        industry, where I focused on business-case development and automation solutions.
+                        A hands-on mindset and a real curiosity for learning led me to start building my
+                        own projects — and Morales Labs is the channel where I share them.
+                    </p>
+                    <p>
+                        Those projects range widely: from complex machine learning models to small,
+                        focused apps — like one for practicing new languages. Whatever the
+                        scale, my work stays pragmatic, minimalist, and user-centric.
+                    </p>
+                    <p>
+                        If you have an idea worth building and you're looking for a partner to help bring
+                        it to life — on the business or the operations side — don't hesitate to reach out.
+                        I'm always happy to talk through a good problem.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-row">
+                <span>© 2026 Morales Labs.</span>
+                <a href="mailto:moraleslabs@duck.com">moraleslabs@duck.com</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

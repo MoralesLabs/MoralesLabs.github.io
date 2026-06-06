@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyViet — Vietnamese Vocabulary Learning App | Morales Labs</title>
+    <style>
+        :root {
+            --ink: #1a1f2b;
+            --muted: #5b6472;
+            --line: #e6e8ec;
+            --bg: #ffffff;
+            --soft: #f7f8fa;
+            --accent: #2f6f6a;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--ink);
+            background: var(--bg);
+            margin: 0;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrap { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+        header {
+            border-bottom: 1px solid var(--line);
+            position: sticky; top: 0;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: saturate(180%) blur(8px);
+            z-index: 10;
+        }
+        .nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 28px; max-width: 920px; margin: 0 auto;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+        .brand img { height: 30px; width: auto; display: block; }
+        .brand span { font-weight: 600; letter-spacing: .02em; font-size: 1.05rem; }
+        .nav a.link { color: var(--muted); text-decoration: none; font-size: .92rem; font-weight: 500; }
+        .nav a.link:hover { color: var(--ink); }
+
+        .crumbs { font-size: .88rem; color: var(--muted); padding-top: 36px; }
+        .crumbs a { color: var(--muted); text-decoration: none; }
+        .crumbs a:hover { color: var(--ink); }
+
+        /* App hero */
+        .app-hero {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            gap: 24px;
+            align-items: center;
+            padding: 26px 0 14px;
+        }
+        .app-icon-lg {
+            width: 92px; height: 92px; border-radius: 22px;
+            background: linear-gradient(135deg, #2f6f6a 0%, #1a1f2b 100%);
+            color: #fff; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 2rem;
+        }
+        .tag {
+            display: inline-block; font-size: .66rem; font-weight: 600;
+            letter-spacing: .06em; text-transform: uppercase;
+            color: #1f5f4f; background: #e3f3ec; border-radius: 999px;
+            padding: 3px 9px; margin-bottom: 8px;
+        }
+        h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin: 0 0 6px; }
+        .subtitle { color: var(--muted); font-size: 1.05rem; margin: 0; }
+
+        .lead { font-size: 1.15rem; color: #39414f; max-width: 640px; margin: 28px 0 4px; }
+
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; }
+        .cta {
+            display: inline-block; background: var(--ink); color: #fff;
+            text-decoration: none; padding: 12px 24px; border-radius: 8px;
+            font-weight: 600; font-size: .95rem; transition: background .2s ease;
+        }
+        .cta:hover { background: var(--accent); }
+        .cta.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+        .cta.ghost:hover { border-color: var(--ink); background: var(--soft); }
+
+        section { padding: 44px 0; border-top: 1px solid var(--line); margin-top: 36px; }
+        section:first-of-type { border-top: none; margin-top: 0; }
+        .section-label {
+            text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+            font-weight: 600; color: var(--accent); margin: 0 0 14px;
+        }
+        h2 { font-size: 1.5rem; letter-spacing: -0.01em; margin: 0 0 16px; }
+        p { color: #39414f; margin: 0 0 16px; }
+
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+        .feature {
+            background: var(--soft); border: 1px solid var(--line);
+            border-radius: 12px; padding: 22px;
+        }
+        .feature h3 { margin: 0 0 6px; font-size: 1.02rem; }
+        .feature p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+        .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+        .shot {
+            aspect-ratio: 9 / 16;
+            border: 1px dashed var(--line);
+            border-radius: 16px;
+            background: var(--soft);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted); font-size: .85rem; text-align: center; padding: 10px;
+        }
+
+        .note {
+            background: var(--soft); border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px; padding: 16px 18px; color: var(--muted); font-size: .92rem;
+        }
+
+        .url-box {
+            display: flex; align-items: center; gap: 10px;
+            background: #0f1320; color: #e6e8ec;
+            border-radius: 10px; padding: 12px 16px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: .9rem; overflow-x: auto; margin: 6px 0 24px;
+        }
+        .url-box .u-label {
+            color: #7fcabc; font-weight: 600; white-space: nowrap;
+            text-transform: uppercase; letter-spacing: .08em; font-size: .66rem;
+        }
+        .dslist { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .ds {
+            display: flex; align-items: baseline; gap: 10px;
+            background: var(--soft); border: 1px solid var(--line);
+            border-radius: 10px; padding: 12px 14px;
+        }
+        .ds .n { font-weight: 600; font-size: .95rem; }
+        .ds .c {
+            margin-left: auto; color: var(--accent); font-weight: 600;
+            font-size: .78rem; white-space: nowrap;
+        }
+        .ds .d { display: block; color: var(--muted); font-size: .85rem; margin-top: 2px; }
+        .ol { margin: 0 0 16px; padding-left: 20px; }
+        .ol li { color: #39414f; margin-bottom: 8px; }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 36px 0 48px; margin-top: 40px;
+            color: var(--muted); font-size: .9rem;
+        }
+        footer a { color: var(--ink); text-decoration: none; font-weight: 500; }
+        footer a:hover { color: var(--accent); }
+        .foot-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+        @media (max-width: 560px) {
+            .app-hero { grid-template-columns: 64px 1fr; gap: 16px; }
+            .app-icon-lg { width: 64px; height: 64px; font-size: 1.4rem; border-radius: 16px; }
+            .nav a.link { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav">
+            <a class="brand" href="index.html">
+                <img src="LOGO.svg" alt="Morales Labs logo">
+                <span>Morales&nbsp;Labs</span>
+            </a>
+            <a class="link" href="apps.html">All apps</a>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <p class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; <a href="apps.html">Apps</a> &nbsp;/&nbsp; MyViet</p>
+
+        <div class="app-hero">
+            <div class="app-icon-lg">MV</div>
+            <div>
+                <span class="tag">Live</span>
+                <h1>MyViet</h1>
+                <p class="subtitle">Practice Vietnamese, a little every day.</p>
+            </div>
+        </div>
+
+        <p class="lead">
+            MyViet is a simple, focused Android app for building your Vietnamese vocabulary through active practice.
+            Add your own words, organize them into categories, and drill them in flashcard-style sessions with instant feedback - also enjoy the new listening feature!
+        </p>
+
+        <div class="actions">
+            <!-- TODO: replace # with your Google Play / download link when ready -->
+            <a class="cta" href="#">Get the app</a>
+            <a class="cta ghost" href="apps.html">Back to all apps</a>
+        </div>
+
+        <section>
+            <p class="section-label">Features</p>
+            <h2>What's inside</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Build your own word lists</h3>
+                    <p>Add English/Vietnamese pairs with optional descriptions — no fixed curriculum to follow.</p>
+                </div>
+                <div class="feature">
+                    <h3>Import from Excel</h3>
+                    <p>Bulk-add words by uploading a CSV exported from Excel (or any spreadsheet), with columns for English, Vietnamese, and optional description and categories.</p>
+                </div>
+                <div class="feature">
+                    <h3>Four practice modes</h3>
+                    <p>English→Vietnamese, Vietnamese→English, a random mix, and listen-only (hear the word, type what you understood).</p>
+                </div>
+                <div class="feature">
+                    <h3>Text-to-speech in both languages</h3>
+                    <p>Native audio reads English and Vietnamese aloud, with adjustable speech speed.</p>
+                </div>
+                <div class="feature">
+                    <h3>Read-all playback</h3>
+                    <p>One tap plays through your entire visible list for hands-free, passive review.</p>
+                </div>
+                <div class="feature">
+                    <h3>Categories and search</h3>
+                    <p>Organize words into custom categories and filter or search to find anything fast.</p>
+                </div>
+                <div class="feature">
+                    <h3>Progress tracking</h3>
+                    <p>Every word logs your correct and missed attempts so you can see what still needs work.</p>
+                </div>
+                <div class="feature">
+                    <h3>Personalization</h3>
+                    <p>Themes, zoom, and column controls to set up the app the way you like.</p>
+                </div>
+                <div class="feature">
+                    <h3>Works offline</h3>
+                    <p>Everything runs on your phone — no account or connection required.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <p class="section-label">Dataset Library</p>
+            <h2>Ready-made word packs</h2>
+            <p>
+                MyViet includes a <strong>Library</strong> (premium) that lets you add curated
+                vocabulary packs in one tap — no manual file picking. The app reads a catalog hosted
+                here on this site, so new packs can appear without any app update.
+            </p>
+            <p style="margin-bottom:8px;">To connect it, paste this catalog URL into the app under
+                <strong>Settings → Library catalog (URL)</strong>, then open
+                <strong>Vocabulary → Library</strong>:</p>
+            <div class="url-box">
+                <span class="u-label">Catalog</span>
+                <span>https://moraleslabs.github.io/library/datasets.json</span>
+            </div>
+
+            <h2 style="font-size:1.15rem;">Available packs</h2>
+            <div class="dslist">
+                <div class="ds"><div><span class="n">Greetings &amp; Introductions</span><span class="d">Everyday polite phrases and first meetings</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Numbers &amp; Counting</span><span class="d">From one to a thousand</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Family &amp; Relationships</span><span class="d">Family members and people close to you</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Restaurant &amp; Dining</span><span class="d">Ordering food and drinks</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Food &amp; Groceries</span><span class="d">Common ingredients and groceries</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Shopping &amp; Money</span><span class="d">Prices, paying, and bargaining</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Directions &amp; Transport</span><span class="d">Getting around town</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">At the Airport</span><span class="d">Travel and check-in basics</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Time &amp; Calendar</span><span class="d">Days, parts of the day, and dates</span></div><span class="c">12</span></div>
+                <div class="ds"><div><span class="n">Health &amp; Emergencies</span><span class="d">Doctor, pharmacy, and urgent help</span></div><span class="c">12</span></div>
+            </div>
+        </section>
+
+        <section>
+            <p class="section-label">Screenshots</p>
+            <h2>A look inside</h2>
+            <div class="shots">
+                <!-- TODO: replace these placeholders with real screenshots, e.g. <img src="screens/myviet-1.png"> -->
+                <div class="shot">Screenshot 1</div>
+                <div class="shot">Screenshot 2</div>
+                <div class="shot">Screenshot 3</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div class="foot-row">
+                <span>© 2026 Morales Labs.</span>
+                <a href="mailto:moraleslabs@duck.com">moraleslabs@duck.com</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
