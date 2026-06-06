@@ -2,61 +2,61 @@
   "datasets": [
     {
       "name": "Greetings & Introductions",
-      "url": "https://moraleslabs.github.io/library/greetings.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/greetings.csv",
       "count": 12,
       "desc": "Everyday polite phrases and first meetings"
     },
     {
       "name": "Numbers & Counting",
-      "url": "https://moraleslabs.github.io/library/numbers.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/numbers.csv",
       "count": 12,
       "desc": "From one to a thousand"
     },
     {
       "name": "Family & Relationships",
-      "url": "https://moraleslabs.github.io/library/family.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/family.csv",
       "count": 12,
       "desc": "Family members and people close to you"
     },
     {
       "name": "Restaurant & Dining",
-      "url": "https://moraleslabs.github.io/library/restaurant.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/restaurant.csv",
       "count": 12,
       "desc": "Ordering food and drinks"
     },
     {
       "name": "Food & Groceries",
-      "url": "https://moraleslabs.github.io/library/food.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/food.csv",
       "count": 12,
       "desc": "Common ingredients and groceries"
     },
     {
       "name": "Shopping & Money",
-      "url": "https://moraleslabs.github.io/library/shopping.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/shopping.csv",
       "count": 12,
       "desc": "Prices, paying, and bargaining"
     },
     {
       "name": "Directions & Transport",
-      "url": "https://moraleslabs.github.io/library/directions.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/directions.csv",
       "count": 12,
       "desc": "Getting around town"
     },
     {
       "name": "At the Airport",
-      "url": "https://moraleslabs.github.io/library/airport.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/airport.csv",
       "count": 12,
       "desc": "Travel and check-in basics"
     },
     {
       "name": "Time & Calendar",
-      "url": "https://moraleslabs.github.io/library/time.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/time.csv",
       "count": 12,
       "desc": "Days, parts of the day, and dates"
     },
     {
       "name": "Health & Emergencies",
-      "url": "https://moraleslabs.github.io/library/health.csv",
+      "url": "https://moraleslabs.github.io/library/myviet/datasets/health.csv",
       "count": 12,
       "desc": "Doctor, pharmacy, and urgent help"
     }

@@ -129,6 +129,13 @@
             display: flex; align-items: baseline; gap: 10px;
             background: var(--soft); border: 1px solid var(--line);
             border-radius: 10px; padding: 12px 14px;
+            text-decoration: none; color: inherit;
+            transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+        }
+        a.ds:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(26,31,43,0.06);
         }
         .ds .n { font-weight: 600; font-size: .95rem; }
         .ds .c {
@@ -136,6 +143,7 @@
             font-size: .78rem; white-space: nowrap;
         }
         .ds .d { display: block; color: var(--muted); font-size: .85rem; margin-top: 2px; }
+        .ds .dl { display: block; color: var(--accent); font-size: .78rem; font-weight: 600; margin-top: 4px; }
         .ol { margin: 0 0 16px; padding-left: 20px; }
         .ol li { color: #39414f; margin-bottom: 8px; }
 
@@ -246,21 +254,22 @@
                 <strong>Vocabulary → Library</strong>:</p>
             <div class="url-box">
                 <span class="u-label">Catalog</span>
-                <span>https://moraleslabs.github.io/library/datasets.json</span>
+                <span>https://moraleslabs.github.io/library/myviet/datasets.json</span>
             </div>
 
             <h2 style="font-size:1.15rem;">Available packs</h2>
+            <p style="margin-bottom:16px;">Tap any pack to download its CSV, or connect the catalog above to add them in the app.</p>
             <div class="dslist">
-                <div class="ds"><div><span class="n">Greetings &amp; Introductions</span><span class="d">Everyday polite phrases and first meetings</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Numbers &amp; Counting</span><span class="d">From one to a thousand</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Family &amp; Relationships</span><span class="d">Family members and people close to you</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Restaurant &amp; Dining</span><span class="d">Ordering food and drinks</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Food &amp; Groceries</span><span class="d">Common ingredients and groceries</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Shopping &amp; Money</span><span class="d">Prices, paying, and bargaining</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Directions &amp; Transport</span><span class="d">Getting around town</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">At the Airport</span><span class="d">Travel and check-in basics</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Time &amp; Calendar</span><span class="d">Days, parts of the day, and dates</span></div><span class="c">12</span></div>
-                <div class="ds"><div><span class="n">Health &amp; Emergencies</span><span class="d">Doctor, pharmacy, and urgent help</span></div><span class="c">12</span></div>
+                <a class="ds" href="library/myviet/datasets/greetings.csv" download><div><span class="n">Greetings &amp; Introductions</span><span class="d">Everyday polite phrases and first meetings</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/numbers.csv" download><div><span class="n">Numbers &amp; Counting</span><span class="d">From one to a thousand</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/family.csv" download><div><span class="n">Family &amp; Relationships</span><span class="d">Family members and people close to you</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/restaurant.csv" download><div><span class="n">Restaurant &amp; Dining</span><span class="d">Ordering food and drinks</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/food.csv" download><div><span class="n">Food &amp; Groceries</span><span class="d">Common ingredients and groceries</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/shopping.csv" download><div><span class="n">Shopping &amp; Money</span><span class="d">Prices, paying, and bargaining</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/directions.csv" download><div><span class="n">Directions &amp; Transport</span><span class="d">Getting around town</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/airport.csv" download><div><span class="n">At the Airport</span><span class="d">Travel and check-in basics</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/time.csv" download><div><span class="n">Time &amp; Calendar</span><span class="d">Days, parts of the day, and dates</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
+                <a class="ds" href="library/myviet/datasets/health.csv" download><div><span class="n">Health &amp; Emergencies</span><span class="d">Doctor, pharmacy, and urgent help</span><span class="dl">Download CSV &darr;</span></div><span class="c">12</span></a>
             </div>
         </section>
 
